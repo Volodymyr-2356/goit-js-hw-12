@@ -62,10 +62,17 @@ form.addEventListener("submit", async (e) => {
 
     input.value = "";
 
-    // показ кнопки
-    if (page <= totalPages) {
-      loadbutton.classList.remove("hidden");
-    }
+    // проверка на конец колекции на первой же странице
+    if (page > totalPages) {
+  loadbutton.classList.add("hidden");
+
+  iziToast.info({
+    message:
+      "We're sorry, but you've reached the end of search results.",
+  });
+} else {
+  loadbutton.classList.remove("hidden");
+}
 
   } catch (err) {
     console.error(err);
@@ -84,6 +91,10 @@ form.addEventListener("submit", async (e) => {
 loadbutton.addEventListener("click", async () => {
   if (page > totalPages) {
     loadbutton.classList.add("hidden");
+    iziToast.info({
+    message:
+      "We're sorry, but you've reached the end of search results.",
+  });
     return;
   }
   showLoader();
@@ -99,7 +110,7 @@ loadbutton.addEventListener("click", async () => {
       loadbutton.classList.add("hidden");
 
       iziToast.info({
-        message: "No more images",
+        message: "We're sorry, but you've reached the end of search results.",
       });
     }
 
