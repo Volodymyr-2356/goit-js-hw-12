@@ -44,23 +44,53 @@
   display: flex;
   flex-wrap: wrap;
   gap: 24px;
+  margin-bottom: 20px;
 }
 .gallery-item {
-  flex-basis: calc((100% - 48px) / 4);
+  flex-basis: calc((100% - 48px) / 3);
   overflow: hidden;
   transition: transform 0.2s linear;
   border: 1px solid #808080;
+  box-sizing: border-box;
+}
+
+.gallery-item img {
+  display: block;
+  width: 100%;
+  height: 200px;  
+  object-fit: cover;
 }
 
 .info {
   display: flex;
-  gap: 20px;
+  gap: 4px;
   justify-content: space-around;
   /* flex-direction: column; */
+   
 }
-.value {
+.stat {
   display: flex;
-  gap: 20px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.label {
+  font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 1.3;
+    letter-spacing: 0.04em;
+    color: #2e2f42;
+}
+
+.value {
+  font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 2;
+    letter-spacing: 0.04em;
+    color: #2e2f42;
+  
 }
 
 .form-input {
@@ -101,4 +131,5 @@
 .button-wraper {
   display: flex;
   justify-content: center;
+  
 }

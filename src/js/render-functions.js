@@ -16,11 +16,26 @@ export function createGallery(images) {
           </a>
 
           <ul class="info">
-            <p> Likes ${img.likes}</p>
-            <p>Views ${img.views}</p>
-            <p>Comments ${img.comments}</p>
-            <p>Downloads ${img.downloads}</p>
-          </ul>
+            <li class="stat">
+              <span class="label">Likes</span>
+              <span class="value">${img.likes}</span>
+            </li>
+
+              <li class="stat">
+                <span class="label">Views</span>
+                <span class="value">${img.views}</span>
+              </li>
+
+              <li class="stat">
+                <span class="label">Comments</span>
+                <span class="value">${img.comments}</span>
+              </li>
+
+              <li class="stat">
+                <span class="label">Downloads</span>
+                <span class="value">${img.downloads}</span>
+              </li>
+</ul>
         </li>
       `;
     })

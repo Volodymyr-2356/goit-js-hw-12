@@ -104,6 +104,18 @@ loadbutton.addEventListener("click", async () => {
 
     createGallery(hits);
 
+    const card = document.querySelector(".gallery-item");
+    if (card) {
+      const cardHeight = card.getBoundingClientRect().height;
+
+      window.scrollBy({
+    top: cardHeight*2,
+    
+    behavior: "smooth",
+});
+
+    }
+
     page += 1;
 
     if (page > totalPages) {
