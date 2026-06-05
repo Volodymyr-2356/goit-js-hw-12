@@ -3,6 +3,7 @@ import "simplelightbox/dist/simple-lightbox.min.css";
 
 const gallery = document.querySelector(".gallery");
 const loader = document.querySelector(".loader");
+const loadbutton = document.querySelector(".load-button");
 
 let lightbox;
 
@@ -35,7 +36,7 @@ export function createGallery(images) {
                 <span class="label">Downloads</span>
                 <span class="value">${img.downloads}</span>
               </li>
-</ul>
+            </ul>
         </li>
       `;
     })
@@ -62,4 +63,15 @@ export function showLoader()
  
 export function hideLoader() {
   loader.classList.add("hidden");
+}
+
+export function showLoadMore() {
+  loadbutton.classList.remove("hidden");
+  
+
+}
+
+export function hideLoadMore() {
+  loadbutton.classList.add("hidden");
+  
 }

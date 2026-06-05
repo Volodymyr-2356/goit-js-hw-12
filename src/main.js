@@ -9,7 +9,7 @@ import "izitoast/dist/css/iziToast.min.css";
 
 
 import { getImagesByQuery } from "./js/pixabay-api";
-import { createGallery,clearGallery, showLoader,hideLoader } from "./js/render-functions";
+import { createGallery,clearGallery, showLoader,hideLoader,hideLoadMore,showLoadMore } from "./js/render-functions";
 
 const form = document.querySelector(".form");
 const loadbutton = document.querySelector(".load-button");
@@ -38,7 +38,7 @@ form.addEventListener("submit", async (e) => {
   totalPages = 0;
 
   clearGallery();
-  loadbutton.classList.add("hidden");
+  hideLoadMore();
 
   showLoader();
 
@@ -64,14 +64,14 @@ form.addEventListener("submit", async (e) => {
 
     // проверка на конец колекции на первой же странице
     if (page > totalPages) {
-  loadbutton.classList.add("hidden");
+      hideLoadMore();
 
   iziToast.info({
     message:
       "We're sorry, but you've reached the end of search results.",
   });
 } else {
-  loadbutton.classList.remove("hidden");
+      showLoadMore();
 }
 
   } catch (err) {
@@ -90,13 +90,14 @@ form.addEventListener("submit", async (e) => {
 
 loadbutton.addEventListener("click", async () => {
   if (page > totalPages) {
-    loadbutton.classList.add("hidden");
+    hideLoadMore();
     iziToast.info({
     message:
       "We're sorry, but you've reached the end of search results.",
   });
     return;
   }
+  hideLoadMore();
   showLoader();
 
   try {
@@ -119,7 +120,7 @@ loadbutton.addEventListener("click", async () => {
     page += 1;
 
     if (page > totalPages) {
-      loadbutton.classList.add("hidden");
+      hideLoadMore();
 
       iziToast.info({
         message: "We're sorry, but you've reached the end of search results.",
