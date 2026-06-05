@@ -118,6 +118,7 @@ loadbutton.addEventListener("click", async () => {
     }
 
     page += 1;
+    showLoadMore();
 
     if (page > totalPages) {
       hideLoadMore();
