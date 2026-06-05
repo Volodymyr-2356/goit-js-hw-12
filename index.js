@@ -1,15 +1,30 @@
-import{a as w,S as v,i}from"./assets/vendor-DcHCnVjq.js";(function(){const o=document.createElement("link").relList;if(o&&o.supports&&o.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))n(e);new MutationObserver(e=>{for(const t of e)if(t.type==="childList")for(const d of t.addedNodes)d.tagName==="LINK"&&d.rel==="modulepreload"&&n(d)}).observe(document,{childList:!0,subtree:!0});function r(e){const t={};return e.integrity&&(t.integrity=e.integrity),e.referrerPolicy&&(t.referrerPolicy=e.referrerPolicy),e.crossOrigin==="use-credentials"?t.credentials="include":e.crossOrigin==="anonymous"?t.credentials="omit":t.credentials="same-origin",t}function n(e){if(e.ep)return;e.ep=!0;const t=r(e);fetch(e.href,t)}})();const S=w.create({baseURL:"https://pixabay.com/api/",params:{key:"56004619-5e359d977e1c08efaf1a151d7",per_page:"15",image_type:"photo",orientation:"horizontal",safesearch:!0}}),h=async(s,o)=>(await S.get("",{params:{q:s,page:o}})).data,y=document.querySelector(".gallery"),p=document.querySelector(".loader");let u;function g(s){const o=s.map(r=>`
+import{a as v,S as w,i as l}from"./assets/vendor-DcHCnVjq.js";(function(){const t=document.createElement("link").relList;if(t&&t.supports&&t.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))n(e);new MutationObserver(e=>{for(const r of e)if(r.type==="childList")for(const d of r.addedNodes)d.tagName==="LINK"&&d.rel==="modulepreload"&&n(d)}).observe(document,{childList:!0,subtree:!0});function s(e){const r={};return e.integrity&&(r.integrity=e.integrity),e.referrerPolicy&&(r.referrerPolicy=e.referrerPolicy),e.crossOrigin==="use-credentials"?r.credentials="include":e.crossOrigin==="anonymous"?r.credentials="omit":r.credentials="same-origin",r}function n(e){if(e.ep)return;e.ep=!0;const r=s(e);fetch(e.href,r)}})();const S=v.create({baseURL:"https://pixabay.com/api/",params:{key:"56004619-5e359d977e1c08efaf1a151d7",per_page:"15",image_type:"photo",orientation:"horizontal",safesearch:!0}}),m=async(a,t)=>(await S.get("",{params:{q:a,page:t}})).data,h=document.querySelector(".gallery"),y=document.querySelector(".loader");let u;function g(a){const t=a.map(s=>`
         <li class="gallery-item">
-          <a href="${r.largeImageURL}">
-            <img src="${r.webformatURL}" alt="${r.tags}"  />
+          <a href="${s.largeImageURL}">
+            <img src="${s.webformatURL}" alt="${s.tags}"  />
           </a>
 
           <ul class="info">
-            <p> Likes ${r.likes}</p>
-            <p>Views ${r.views}</p>
-            <p>Comments ${r.comments}</p>
-            <p>Downloads ${r.downloads}</p>
-          </ul>
+            <li class="stat">
+              <span class="label">Likes</span>
+              <span class="value">${s.likes}</span>
+            </li>
+
+              <li class="stat">
+                <span class="label">Views</span>
+                <span class="value">${s.views}</span>
+              </li>
+
+              <li class="stat">
+                <span class="label">Comments</span>
+                <span class="value">${s.comments}</span>
+              </li>
+
+              <li class="stat">
+                <span class="label">Downloads</span>
+                <span class="value">${s.downloads}</span>
+              </li>
+</ul>
         </li>
-      `).join("");y.insertAdjacentHTML("beforeend",o),u?u.refresh():u=new v(".gallery a")}function q(){y.innerHTML=""}function L(){p.classList.remove("hidden")}function f(){p.classList.add("hidden")}const m=document.querySelector(".form"),l=document.querySelector(".load-button");let a=1,b="",c=0;m.addEventListener("submit",async s=>{s.preventDefault();const o=m.elements["search-text"],r=o.value.trim();if(!r){i.show({title:"Warning",message:"Please enter a search query"});return}a=1,b=r,c=0,q(),l.classList.add("hidden"),L();try{const{hits:n,totalHits:e}=await h(r,a);if(!n.length){i.error({title:"No result",message:"Sorry, no images found."}),f();return}c=Math.ceil(e/15),g(n),a+=1,o.value="",a>c?(l.classList.add("hidden"),i.info({message:"We're sorry, but you've reached the end of search results."})):l.classList.remove("hidden")}catch(n){console.error(n),i.error({title:"Error",message:"Something went wrong"})}finally{f()}});l.addEventListener("click",async()=>{if(a>c){l.classList.add("hidden"),i.info({message:"We're sorry, but you've reached the end of search results."});return}L();try{const{hits:s}=await h(b,a);g(s),a+=1,a>c&&(l.classList.add("hidden"),i.info({message:"We're sorry, but you've reached the end of search results."}))}catch(s){console.error(s),i.error({title:"Error",message:"Failed to load more images"})}finally{f()}});
+      `).join("");h.insertAdjacentHTML("beforeend",t),u?u.refresh():u=new w(".gallery a")}function q(){h.innerHTML=""}function L(){y.classList.remove("hidden")}function f(){y.classList.add("hidden")}const p=document.querySelector(".form"),i=document.querySelector(".load-button");let o=1,b="",c=0;p.addEventListener("submit",async a=>{a.preventDefault();const t=p.elements["search-text"],s=t.value.trim();if(!s){l.show({title:"Warning",message:"Please enter a search query"});return}o=1,b=s,c=0,q(),i.classList.add("hidden"),L();try{const{hits:n,totalHits:e}=await m(s,o);if(!n.length){l.error({title:"No result",message:"Sorry, no images found."}),f();return}c=Math.ceil(e/15),g(n),o+=1,t.value="",o>c?(i.classList.add("hidden"),l.info({message:"We're sorry, but you've reached the end of search results."})):i.classList.remove("hidden")}catch(n){console.error(n),l.error({title:"Error",message:"Something went wrong"})}finally{f()}});i.addEventListener("click",async()=>{if(o>c){i.classList.add("hidden"),l.info({message:"We're sorry, but you've reached the end of search results."});return}L();try{const{hits:a}=await m(b,o);g(a);const t=document.querySelector(".gallery-item");if(t){const s=t.getBoundingClientRect().height;window.scrollBy({top:s*2,behavior:"smooth"})}o+=1,o>c&&(i.classList.add("hidden"),l.info({message:"We're sorry, but you've reached the end of search results."}))}catch(a){console.error(a),l.error({title:"Error",message:"Failed to load more images"})}finally{f()}});
 //# sourceMappingURL=index.js.map
